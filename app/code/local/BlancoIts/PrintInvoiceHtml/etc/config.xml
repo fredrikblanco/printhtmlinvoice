@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <BlancoIts_PrintInvoiceHtml>
+            <version>1.0.0</version>
+            <depends>
+                <!-- no dependencies -->
+            </depends>
+        </BlancoIts_PrintInvoiceHtml>
+    </modules>
+    <global>
+        <models />
+        <blocks />
+        <resources />
+        <extraconfig />
+        <helpers>
+            <PrintInvoiceHtml>
+                <class>BlancoIts_PrintInvoiceHtml_Helper</class>
+            </PrintInvoiceHtml>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <BlancoIts_PrintInvoiceHtml>
+                <use>admin</use>
+                <args>
+                    <module>BlancoIts_PrintInvoiceHtml</module>
+                    <frontName>PrintInvoiceHtml</frontName>
+                </args>
+            </BlancoIts_PrintInvoiceHtml>
+        </routers>
+    </admin> 
+    <frontend>
+        <layout>
+            <updates>
+                <PrintInvoiceHtml>
+                    <file>PrintInvoiceHtml.xml</file>
+                </PrintInvoiceHtml>
+            </updates>
+        </layout>
+    </frontend> 
+    <adminhtml>
+        <layout>
+            <updates>
+                <PrintInvoiceHtml>
+                    <file>printinvoicehtml.xml</file>
+                </PrintInvoiceHtml>
+            </updates>
+        </layout>
+    </adminhtml> 
+    <global>
+         <blocks>
+         <adminhtml>
+            
+        <rewrite>
+            <sales_order_invoice_view>BlancoIts_PrintInvoiceHtml_Block_Adminhtml_Sales_Order_Invoice_View</sales_order_invoice_view>
+        </rewrite>
+        
+         </adminhtml>
+         </blocks>
+    </global>
+
+</config>

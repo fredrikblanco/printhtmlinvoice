@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <print translate="label" module="page">
+        <label>All Pages (Print Version)</label>
+        <!-- Mage_Page -->
+        <block type="page/html" name="root" output="toHtml" template="printinvoicehtml/print.phtml">
+            <block type="page/html_head" name="head" as="head" template="printinvoicehtml/html/head.phtml">
+                <action method="addJs"><script>prototype/prototype.js</script></action>
+                <action method="addJs"><script>mage/translate.js</script></action>
+                <action method="addJs"><script>lib/ccard.js</script></action>
+                <action method="addJs"><script>prototype/validation.js</script></action>
+                <action method="addJs"><script>varien/js.js</script></action>
+                <action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
+
+                <action method="addCss"><stylesheet>printhtmlinvoice/css/styles.css</stylesheet></action>
+                
+                <action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
+                <action method="addCss"><stylesheet>css/widgets.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>
+
+                <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>
+                <!--<action method="addItem"><type>skin_js</type><name>js/iehover-fix.js</name><params/><if>lt IE 7</if></action>-->
+            </block>
+
+            <block type="core/text_list" name="content" as="content" translate="label">
+                <label>Main Content Area (Print Version)</label>
+            </block>
+
+        </block>
+    </print>
+    <blancoits_printinvoicehtml_order_printinvoice>
+     <label>Sales Invoice Print View</label>
+
+     <reference name="head">
+         <action method="addJs">
+             <script>i4packedshipment/packedshipment.js</script>
+         </action>
+         <action method="addCss">
+             <name>i4packedshipment/windows/themes/default.css</name>
+         </action>
+         <action method="addCss">
+             <name>i4packedshipment/windows/themes/magento.css</name>
+         </action>
+     
+         
+     </reference>
+        
+      
+      <reference name="content">
+          <block type="sales/order_print_invoice" name="sales.order.print.invoice" template="printinvoicehtml/order/print/invoice.phtml">
+                <action method="addItemRender"><type>default</type><block>sales/order_item_renderer_default</block><template>printinvoicehtml/invoice/items/renderer/default.phtml</template></action> 
+                <action method="addItemRender"><type>grouped</type><block>sales/order_item_renderer_grouped</block><template>printinvoicehtml/invoice/items/renderer/defaultm.phtml</template></action> 
+                <block type="sales/order_invoice_totals" name="invoice_totals" template="printinvoicehtml/order/totals.phtml">
+                    <action method="setLabelProperties"><value>colspan="4" class="a-right"</value></action>
+                    <action method="setValueProperties"><value>class="last a-right"</value></action>
+                    <block type="tax/sales_order_tax" name="tax" template="printinvoicehtml/tax/order/tax.phtml" />
+                </block>
+            </block> 
+
+        </reference>
+      
+    </blancoits_printinvoicehtml_order_printinvoice>
+
+</layout>
+
